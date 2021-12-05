@@ -15,6 +15,7 @@ const router = express.Router();
  router.post('/get-product-from-amazon', controller.getProductFromAmazon);
  router.post('/post-order', controller.postOrder);
  router.get('/get-all-orders', controller.getAllOrders);
+ router.get('/get-order-by-id/:id', controller.getOrderById);
 
 
  // Export All router..

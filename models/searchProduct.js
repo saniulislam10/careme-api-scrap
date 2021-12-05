@@ -51,12 +51,20 @@ const schema = new Schema({
         type: String,
         required: false
     },
-    color: {
+    firstVariant: {
         type: String,
         required: false
     },
-    size: {
-        type: Number,
+    secondVariant: {
+        type: String,
+        required: false
+    },
+    thirdVariant: {
+        type: String,
+        required: false
+    },
+    fourthVariant: {
+        type: String,
         required: false
     },
     quantity: {

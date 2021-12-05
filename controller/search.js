@@ -39,9 +39,11 @@ exports.getProductFromAmazon = async (req, res, next) => {
         const producto = await new Product(url).init();
         let data = producto.get();
         let price = data.price;
-        price = price.split('$');
-        data.price = parseFloat(price[1]);
-        data.price = data.price*85.67;
+        if(price){
+            price = price.split('$');
+            data.price = parseFloat(price[1]);
+            data.price = data.price*85.67;
+        }
         res.status(200).json({
             success: true,
             data: data,
@@ -88,6 +90,23 @@ exports.getAllOrders = async (req, res, next) => {
         res.status(200).json({
             data: products,
             count: docCount
+        });
+    } catch (err) {
+        if (!err.statusCode) {
+            console.log(err);
+            err.statusCode = 500;
+            err.message = 'Something went wrong on database operation'
+        }
+        next(err);
+    }
+
+}
+exports.getOrderById = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const product = await searchProduct.find({_id: id});
+        res.status(200).json({
+            data: product,
         });
     } catch (err) {
         if (!err.statusCode) {

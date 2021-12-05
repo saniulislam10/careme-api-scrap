@@ -6,6 +6,8 @@ const dotenv = require('dotenv').config()
 const cors = require('cors');
 const errorHandler = require('./middileware/error-handler');
 
+
+const adminRoutes = require('./routes/admin');
 const searchRoutes = require('./routes/search.js');
 
 
@@ -16,10 +18,7 @@ app.use(cors())
 
 
 
-        
-
-
-
+app.use('/api/admin', adminRoutes);
 app.use('/api/search', searchRoutes);
 
 app.get('/', (req, res) => {
