@@ -93,7 +93,7 @@ exports.getAllOrders = async (req, res, next) => {
         if (!err.statusCode) {
             console.log(err);
             err.statusCode = 500;
-            err.message = 'Something went wrong on database operation!'
+            err.message = 'Something went wrong on database operation'
         }
         next(err);
     }
